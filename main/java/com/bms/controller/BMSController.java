@@ -11,6 +11,11 @@ import com.bms.service.BranchService;
 import com.bms.service.ClientService;
 import com.bms.service.EmployeeService;
 
+/**
+ * TODO: when the new user registered, new user cannot login until the program re-runned.
+ * The security layer only extract login-info once is runned and stores them on a List. not a standard config :)
+ */
+
 @Controller
 public class BMSController {
 
