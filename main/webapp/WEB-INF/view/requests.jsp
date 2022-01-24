@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>BMS Client Logged in</title>
+<title>BMS Client Requests</title>
 <style>
 table {
 	border-collapse: inherit;
@@ -28,35 +28,32 @@ h2 {
 </style>
 </head>
 <body>
-	<h2 align="center">Dear ${client.firstname} ${client.lastname} select an account to cont.</h2>
+	<h2 align="center">Dear ${employee.firstname} ${employee.lastname}
+		check the client requests</h2>
 	<hr>
-	<a href="/">go home</a>
+	<a href="/">go back</a>
 	<div align="center">
 
-		<h3 align="center">Account List</h3>
+		<h3 align="center">Request List</h3>
 
 		<table align="center" border="1" cellpadding="5" cellspacing="1">
 			<tr>
-				<th>ID</th>
-				<th>Balance</th>
-				<th>Opened</th>
+				<th>Client ID</th>
+				<th>Account ID</th>
+				<th>Request Type</th>
 			</tr>
-			<c:forEach var="account" items="${client.accounts}">
+			<c:forEach var="request" items="${requests}">
 				<tr>
-					<td>${account.account_id}</td>
-					<td>${account.balance}</td>
-					<td>${account.open_date}</td>
+					<td>${request.client_id}</td>
+					<td>${request.account_id}</td>
+					<td>${request.type}</td>
 					<td><a
-						href="/client/get/${client.client_id}/account/${account.account_id}">Select</a></td>
+						href="http://localhost:2022/employee/get/${employee.employee_id}/request/${request.request_id}/accept_request">Accept</a></td>
+					<td><a
+						href="http://localhost:2022/employee/get/${employee.employee_id}/request/${request.request_id}/decline_request">Decline</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<br>
-		<form:form action="http://localhost:2022/client/get/${client.client_id}/add_account" method="POST">
-
-			<input type="submit" value="Request new account">
-		</form:form>
-		<br>
 	</div>
 
 </body>
